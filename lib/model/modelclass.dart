@@ -11,17 +11,17 @@ class Pixbay {
     if (json['hits'] != null) {
       hits = <Hits>[];
       json['hits'].forEach((v) {
-        hits!.add(Hits.fromJson(v));
+        hits!.add(new Hits.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['total'] = total;
-    data['totalHits'] = totalHits;
-    if (hits != null) {
-      data['hits'] = hits!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['total'] = this.total;
+    data['totalHits'] = this.totalHits;
+    if (this.hits != null) {
+      data['hits'] = this.hits!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -101,29 +101,29 @@ class Hits {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['pageURL'] = pageURL;
-    data['type'] = type;
-    data['tags'] = tags;
-    data['previewURL'] = previewURL;
-    data['previewWidth'] = previewWidth;
-    data['previewHeight'] = previewHeight;
-    data['webformatURL'] = webformatURL;
-    data['webformatWidth'] = webformatWidth;
-    data['webformatHeight'] = webformatHeight;
-    data['largeImageURL'] = largeImageURL;
-    data['imageWidth'] = imageWidth;
-    data['imageHeight'] = imageHeight;
-    data['imageSize'] = imageSize;
-    data['views'] = views;
-    data['downloads'] = downloads;
-    data['collections'] = collections;
-    data['likes'] = likes;
-    data['comments'] = comments;
-    data['user_id'] = userId;
-    data['user'] = user;
-    data['userImageURL'] = userImageURL;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['pageURL'] = this.pageURL;
+    data['type'] = this.type;
+    data['tags'] = this.tags;
+    data['previewURL'] = this.previewURL;
+    data['previewWidth'] = this.previewWidth;
+    data['previewHeight'] = this.previewHeight;
+    data['webformatURL'] = this.webformatURL;
+    data['webformatWidth'] = this.webformatWidth;
+    data['webformatHeight'] = this.webformatHeight;
+    data['largeImageURL'] = this.largeImageURL;
+    data['imageWidth'] = this.imageWidth;
+    data['imageHeight'] = this.imageHeight;
+    data['imageSize'] = this.imageSize;
+    data['views'] = this.views;
+    data['downloads'] = this.downloads;
+    data['collections'] = this.collections;
+    data['likes'] = this.likes;
+    data['comments'] = this.comments;
+    data['user_id'] = this.userId;
+    data['user'] = this.user;
+    data['userImageURL'] = this.userImageURL;
     return data;
   }
 }
