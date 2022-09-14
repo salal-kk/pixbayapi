@@ -12,13 +12,16 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  
   late FocusNode myFocusNode;
-  String searchkeyword = "";
+
   final editingcontroller = TextEditingController();
   @override
   void initState() {
-    super.initState();
     myFocusNode = FocusNode();
+    editingcontroller.text = "";
+    super.initState();
+    
   }
 
   @override
@@ -56,20 +59,21 @@ class _HomepageState extends State<Homepage> {
                       primary: Colors.black,
                     ),
                     onPressed: () {
-                      searchkeyword = editingcontroller.text;
-
                       setState(() {
-                        getPictureFromApi(searchkeyword: searchkeyword);
+                        getPictureFromApi(
+                            searchkeyword: editingcontroller.text);
                       });
                     },
                     icon: const Icon(Icons.search_outlined),
                     label: const Text("Search Here")),
+                
                 FutureBuilder<Pixbay>(
                   future:
                       getPictureFromApi(searchkeyword: editingcontroller.text),
                   builder: (context, snapshot) {
-                    if (snapshot.hasData) {
+                    if (snapshot.hasData && editingcontroller.text!="") {
                       return ListView.builder(
+                       // controller: ,
                         shrinkWrap: true,
                         itemCount: snapshot.data!.hits?.length,
                         itemBuilder: ((context, index) {
@@ -160,7 +164,7 @@ class _HomepageState extends State<Homepage> {
                         }),
                       );
                     } else {
-                      return const CircularProgressIndicator();
+                      return const Text("Please Enter Any Keyword To Search");
                     }
                   },
                 )
