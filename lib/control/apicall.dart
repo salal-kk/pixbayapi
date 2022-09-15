@@ -8,7 +8,7 @@ Future<Pixbay> getPictureFromApi({String? searchkeyword}) async {
   final response = await http.get(Uri.parse(
     
       "https://pixabay.com/api/?key=29897564-b0b40e450044858d8a337b8b0&q=$searchkeyword&image_type=photo"));
-  print(response.body);
+  
   if (response.statusCode == 200) {
     final data = Pixbay.fromJson(jsonDecode(response.body));
 

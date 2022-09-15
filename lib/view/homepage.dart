@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_constf
+// ignore_for_file: unnecessary_constf, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:machine_test_pixbay_api/control/apicall.dart';
@@ -15,7 +15,6 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   late FocusNode myFocusNode;
   late ScrollController controller;
-  int indeexof = 0;
 
   final editingcontroller = TextEditingController();
 
@@ -25,7 +24,7 @@ class _HomepageState extends State<Homepage> {
     myFocusNode = FocusNode();
     controller = ScrollController();
     editingcontroller.text = "";
-    //getPictureFromApi(searchkeyword: searchkeyWord);
+    
     super.initState();
   }
 
@@ -76,8 +75,7 @@ class _HomepageState extends State<Homepage> {
                     ? FutureBuilder<Pixbay>(
                         future: getPictureFromApi(searchkeyword: searchkeyWord),
                         builder: (context, snapshot) {
-                          if (snapshot.hasData &&
-                              editingcontroller.text != "") {
+                          if (snapshot.hasData && editingcontroller.text!="") {
                             return ListView.builder(
                               controller: controller,
                               shrinkWrap: true,
@@ -85,23 +83,13 @@ class _HomepageState extends State<Homepage> {
                               itemBuilder: ((context, index) {
                                 return GestureDetector(
                                   onTap: () {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      for (int i = 0;
-                                          i < snapshot.data!.hits!.length;
-                                          i++) {
-                                        if (snapshot.data!.hits![i].id ==
-                                            index) {
-                                          indeexof = i;
-
-                                          break;
-                                        }
-                                      }
-                                      print(index);
-                                      return Detailsscreen(
-                                          keyvalue: editingcontroller.text,
-                                          index: index ?? 0);
-                                    }));
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Detailsscreen(
+                                                keyvalue:
+                                                    editingcontroller.text,
+                                                index: index)));
                                   },
                                   child: Card(
                                     shape: RoundedRectangleBorder(
@@ -201,12 +189,12 @@ class _HomepageState extends State<Homepage> {
                             );
                           } else {
                             return const Text(
-                                "Please Enter Any Keyword To Search");
+                                "Field cant be empty");
                           }
                         },
                       )
-                    : Center(
-                        child: Text("Search something"),
+                    : const Center(
+                        child: Text("Please Enter Any Keyword To Search"),
                       )
               ],
             ),

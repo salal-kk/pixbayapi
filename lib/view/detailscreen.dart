@@ -1,6 +1,6 @@
+// ignore_for_file: use_key_in_widget_constructors, must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:machine_test_pixbay_api/control/apicall.dart';
 import 'package:machine_test_pixbay_api/model/modelclass.dart';
 
@@ -13,7 +13,7 @@ class Detailsscreen extends StatefulWidget {
 }
 
 class _DetailsscreenState extends State<Detailsscreen> {
-  // late int indexofdata = 2;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,14 +23,12 @@ class _DetailsscreenState extends State<Detailsscreen> {
             builder: ((context, snapshot) {
               if (snapshot.hasData) {
                 return Center(
-                  child: Container(
-                    child: Image.network(
-                        snapshot.data?.hits![ widget.index??0].largeImageURL ??
-                            ""),
-                  ),
+                  child: Image.network(
+                      snapshot.data?.hits![ widget.index??0].largeImageURL ??
+                          ""),
                 );
               } else {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               }
             })),
       ),
