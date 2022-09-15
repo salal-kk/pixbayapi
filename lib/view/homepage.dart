@@ -14,17 +14,17 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   late FocusNode myFocusNode;
-  late ScrollController controller;
-
+ // late ScrollController controller;
+  final ScrollController _controller = ScrollController();
   final editingcontroller = TextEditingController();
 
   var searchkeyWord;
   @override
   void initState() {
     myFocusNode = FocusNode();
-    controller = ScrollController();
+   // controller = ScrollController();
     editingcontroller.text = "";
-    
+
     super.initState();
   }
 
@@ -75,9 +75,10 @@ class _HomepageState extends State<Homepage> {
                     ? FutureBuilder<Pixbay>(
                         future: getPictureFromApi(searchkeyword: searchkeyWord),
                         builder: (context, snapshot) {
-                          if (snapshot.hasData && editingcontroller.text!="") {
+                          if (snapshot.hasData &&
+                              editingcontroller.text != "") {
                             return ListView.builder(
-                              controller: controller,
+                              controller: _controller,
                               shrinkWrap: true,
                               itemCount: snapshot.data!.hits?.length,
                               itemBuilder: ((context, index) {
@@ -187,9 +188,15 @@ class _HomepageState extends State<Homepage> {
                                 );
                               }),
                             );
+                          } else {if (editingcontroller.text=="") {
+                            return 
+                            const Text("Field cant be empty");
+                            
                           } else {
-                            return const Text(
-                                "Field cant be empty");
+                            return Text("Loading.....");
+                            
+                          }
+                            
                           }
                         },
                       )

@@ -13,7 +13,6 @@ class Detailsscreen extends StatefulWidget {
 }
 
 class _DetailsscreenState extends State<Detailsscreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,9 +22,14 @@ class _DetailsscreenState extends State<Detailsscreen> {
             builder: ((context, snapshot) {
               if (snapshot.hasData) {
                 return Center(
-                  child: Image.network(
-                      snapshot.data?.hits![ widget.index??0].largeImageURL ??
-                          ""),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      child: Image.network(snapshot
+                              .data?.hits![widget.index ?? 0].largeImageURL ??
+                          "",fit: BoxFit.cover,),
+                    ),
+                  ),
                 );
               } else {
                 return const Center(child: CircularProgressIndicator());
