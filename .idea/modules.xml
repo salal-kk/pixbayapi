@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/machine_test_pixbay_api.iml" filepath="$PROJECT_DIR$/machine_test_pixbay_api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/machine_test_pixbay_api_android.iml" filepath="$PROJECT_DIR$/android/machine_test_pixbay_api_android.iml" />
+    </modules>
+  </component>
+</project>
